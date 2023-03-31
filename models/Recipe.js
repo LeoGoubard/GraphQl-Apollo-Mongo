@@ -1,9 +1,9 @@
-const { model, schema } = require('mongoose');
+const { model, Schema } = require('mongoose');
 
 const recipeSchema = new Schema({
   name: String,
   description: String,
-  createdAt: Date,
+  createdAt: String,
   thumbsUp: Number,
   downVote: Number
 });

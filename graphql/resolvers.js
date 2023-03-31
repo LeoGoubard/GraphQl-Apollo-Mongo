@@ -5,6 +5,7 @@ module.exports = {
     async recipe(_, { ID }) {
       return await Recipe.findById(ID)
     },
+    
     async getRecipes(_, { amount }) {
       return await Recipe.find(amount).sort({ createdAt: -1 }).limit(amount)
     }
@@ -24,6 +25,17 @@ module.exports = {
         id: result.id,
         ...result._doc
       }
+    },
+
+    async deleteRecipe(_, { ID }) {
+      const wasDeleted = (await Recipe.deleteOne({ _id: ID })).deletedCount;
+      return wasDeleted;
+    },
+
+    async editRecipe(_, { ID, recipeInput: { name, description }}) {
+      const wasEdited = (await Recipe.updateOne({ _id: ID }, { name, description })).modifiedCount;
+      return wasEdited;
     }
+    
   }
 }

@@ -4,7 +4,7 @@ module.exports = gql `
   type Recipe {
     name: String
     description: String
-    createdAt: Date
+    createdAt: String
     thumbsUp: Int
     downVote: Int
 
